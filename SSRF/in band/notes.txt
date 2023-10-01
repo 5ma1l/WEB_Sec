@@ -1,0 +1,30 @@
+IMportants:
+    requests library encode the url before send it 
+
+
+lab1
+  stock check feature which fetches data from an internal system IS vulnu
+  info: 
+    admin page => http://127.0.0.1/admin
+  OBjectif:
+    delete the user carlos
+
+lab2
+  stock check feature which fetches data from an internal system IS vulnu
+    info:
+        admin page => in range 192.168.0.X:8080/admin
+    Objectif:
+        delete the user carlos
+
+lab3
+   the same as lab1 , but two weak anti-SSRF defenses, use double encoding url
+
+lab4
+    The same point as previeus labs, i can only access localhost using stock check feature
+    info :
+      admin page => http://192.168.0.12:8080/admin
+lab5
+  info : localhost/admin
+    use whitelist
+  
+  http://localhost%2523@stock.weliketoshop.net/admin

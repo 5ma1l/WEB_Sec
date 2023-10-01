@@ -1,0 +1,71 @@
+Important:
+     every SELECT statement must specify a table to select FROM IN ORACLE
+     Stacked query is a term to define if a database connection layer can execute more than one query at a time.
+     Bypassing second MD5 hash check login screens
+     in Blind situtaions may you can understand error is coming from DB or application itself. 
+     Because languages like ASP.NET generally throws errors while trying to use NULL values
+     An HTML entity is a piece of text ("string") that begins with an ampersand (&) and ends with a semicolon (;).
+
+
+LABs 3,4,5,6
+
+SQL injection vulnerability in the product category filter
+The database contains a different table called users, with columns called username and password
+SQLi in Band => UNION
+
+1. determine the number of columns returned by the query
+2. identify a column that is compatible with string data
+3. show columns called username and password
+
+Lab 7
+
+4. display the database version string
+
+Lab 8     querying the database type and version on MySQL and Microsoft
+
+5.  display the database version string.
+
+Lab 9     
+     non-Oracle databases solution :"https://sub.web-security-academy.net"  "users_xsnlkq" "username_fwcxmb" "password_xjmwrb"
+     Go to lab9.py code 
+Lab 10    
+     listing the database contents on Oracle : 
+python3 SQLi/lab10.py "https://0a4400ed036c4092806a816900700080.web-security-academy.net"  "all_tab_columns" "table_name" "column_name" -if "where column_name like '%USERNAME%' or column_name like '%PASSWORD%'"
+USERS_BZCNHV
+PASSWORD_ICUZBV
+USERS_BZCNHV
+USERNAME_JDQYKO
+python3 SQLi/lab10.py "https://0a4400ed036c4092806a816900700080.web-security-academy.net"  "USERS_BZCNHV" "USERNAME_JDQYKO" "PASSWORD_ICUZBV"
+
+administrator
+rfoy943pbtlk2o05rxiz
+
+
+carlos
+umvvlq50icwcij0jwfop
+
+
+wiener
+cz8eqm3wpe1d68vh0sgh
+
+ SQL injection vulnerability in the product category filter
+ use a UNION attack to retrieve data from other tables
+ database contains a table that holds usernames and passwords
+ determine the name of this table and the columns it contains
+ obtain the username and password of all users.
+ log in as the administrator user.
+Objectif:
+    use a UNION attack to retrieve data from other tables
+    
+
+lab17 : 
+ A web application firewall (WAF) will block requests that contain obvious signs of a SQL injection attack.
+ SQL injection vulnerability in its stock check feature.
+ The results from the query are returned in the application's response => in band
+ UNION attack to retrieve data from other tables.
+ users table, which contains the usernames and passwords of registered users
+ Objectif   
+   retrieve the admin user's credentials, then log in to their account.
+ solution: i use dec_entities to encode this payload
+   <?xml version="1.0" encoding="UTF-8"?><stockCheck><productId>1</productId><storeId><@dec_entities>1 union select username || '~' || password FROM users --<@/dec_entities></storeId></stockCheck>
+

